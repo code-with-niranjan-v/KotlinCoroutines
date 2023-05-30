@@ -18,9 +18,8 @@ import kotlin.concurrent.thread
 
 fun main() {
 
-
-
     runBlocking {
+
         println("Main thread started")
 
         val job: Job = GlobalScope.launch{
@@ -32,9 +31,19 @@ fun main() {
 
 
         job.join()// waits for the coroutines to complete its work and runs the main thread.
+        /*
+
+            If we don't use job.join(), then the main thread won't for the
+            coroutine to complete its work and work which is initiated in
+            coroutine will not be completed.
+
+         */
+
         println("Main thread Finished")
 
+
     }
+
 }
 
 //Suspended Function
